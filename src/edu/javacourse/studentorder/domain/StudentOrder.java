@@ -7,7 +7,10 @@ public class StudentOrder {
     private long studentOrderId;
     private Adult husband;
     private Adult wife;
-    private List Child child;
+
+
+
+    private List<Child> child;
     private String marriageCertificateId;
     private String marriageOffice;
 
@@ -61,11 +64,11 @@ public class StudentOrder {
         this.wife = wife;
     }
 
-    public Child getChild() {
+    public  List<Child> getChild() {
         return child;
     }
-
-    public void setChild(Child child) {
+    public void setChild(List<Child> child) {
         this.child = child;
     }
+
 }

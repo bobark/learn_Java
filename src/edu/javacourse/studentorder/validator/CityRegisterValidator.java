@@ -21,7 +21,7 @@ public class CityRegisterValidator {
         try {
             CityRegisterCheckerResponse hans = personChecker.checkPerson(so.getHusband());
             CityRegisterCheckerResponse wans = personChecker.checkPerson(so.getWife());
-            CityRegisterCheckerResponse cans = personChecker.checkPerson(so.getChild());
+            //CityRegisterCheckerResponse cans = personChecker.checkPerson(so.getChild());
         }catch (CityRegisterException ex){
             ex.printStackTrace();
         }

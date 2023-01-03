@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class SaveStudentOreder {
     public static void main(String[] args) {
 
-        //  StudentOrder so = new StudentOrder();
+         StudentOrder so = new StudentOrder();
         //  long ans = saveStudentOrder(so);
         //  System.out.println(ans);
 
@@ -55,7 +55,7 @@ public class SaveStudentOreder {
 
         so.setHusband(husband);
         so.setWife(wife);
-        so.setChild(child);
+        //so.setChild(child);
 
 
         return so;
