@@ -1,16 +1,14 @@
 package edu.javacourse.studentorder.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentOrder {
     private long studentOrderId;
     private Adult husband;
     private Adult wife;
-
-
-
-    private List<Child> child;
+    private List<Child> children;
     private String marriageCertificateId;
     private String marriageOffice;
 
@@ -64,11 +62,14 @@ public class StudentOrder {
         this.wife = wife;
     }
 
-    public  List<Child> getChild() {
-        return child;
+    public  List<Child> getChildren() {
+        return children;
     }
-    public void setChild(List<Child> child) {
-        this.child = child;
+    public void addChild(Child child) {
+        if(children == null) {
+            children = new ArrayList<>(5);
+        }
+        children.add(child);
     }
 
 }
