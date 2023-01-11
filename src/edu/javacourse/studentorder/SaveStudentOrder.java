@@ -7,20 +7,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.List;
 
-public class SaveStudentOreder {
+public class SaveStudentOrder {
     public static void main(String[] args) throws Exception {
 
-        Class.forName("org.postgresql.Driver");
-        Connection con = DriverManager.getConnection(
-      "jdbc:postgresql://localhost:5432/jc_student", "postgres","17161815"
-        );
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM jc_street");
-        while (rs.next()) {
-            System.out.println(rs.getLong(1) + " :" + rs.getString(2));
-        }
+
+
 
 //         StudentOrder so = new StudentOrder();
 //          long ans = saveStudentOrder(so);
@@ -43,7 +35,9 @@ public class SaveStudentOreder {
         so.setMarriageDate(LocalDate.of(2016, 7, 4));
         so.setMarriageOffice("Отдел ЗАГС");
 
-        Address address = new Address("195000", "Заневский пр.", "12", "", "142");
+        Street street = new Street(1L, "First street");
+
+        Address address = new Address("195000", street, "12", "", "142");
 
         // Муж
         Adult husband = new Adult("Петров", "Виктор", "Сергеевич", LocalDate.of(1997, 8, 24));
