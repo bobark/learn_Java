@@ -1,6 +1,8 @@
 package edu.javacourse.studentorder;
 
 import edu.javacourse.studentorder.dao.DictionaryDaoImp;
+import edu.javacourse.studentorder.dao.StudentDaoImpl;
+import edu.javacourse.studentorder.dao.StudentOrderDao;
 import edu.javacourse.studentorder.domain.*;
 
 import java.sql.Connection;
@@ -25,26 +27,12 @@ public class SaveStudentOrder {
 //        for (RegisterOffice r : ro) {
 //            System.out.println(r.getOfficeName());
 //        }
-        List<CountryArea> ca1 = new DictionaryDaoImp().findArea("");
-        for (CountryArea c : ca1) {
-            System.out.println(c.getArea_id() + ":" + c.getArea_iname());
-        }
-        System.out.println("---->");
-        List<CountryArea> ca2 = new DictionaryDaoImp().findArea("020000000000");
-        for (CountryArea c : ca2) {
-            System.out.println(c.getArea_id() + ":" + c.getArea_iname());
-        }
-        System.out.println("---->");
-        List<CountryArea> ca3 = new DictionaryDaoImp().findArea("020010000000");
-        for (CountryArea c : ca3) {
-            System.out.println(c.getArea_id() + ":" + c.getArea_iname());
-        }
-        System.out.println("---->");
-        List<CountryArea> ca4 = new DictionaryDaoImp().findArea("020010010000");
-        for (CountryArea c : ca4) {
-            System.out.println(c.getArea_id() + ":" + c.getArea_iname());
-        }
+//
 
+        StudentOrder s = buildStudentOrder(10);
+        StudentOrderDao studentOrderDao = new StudentDaoImpl();
+       Long id = studentOrderDao.saveStudentOrder(s);
+        System.out.println(id);
 
 //         StudentOrder so = new StudentOrder();
 //          long ans = saveStudentOrder(so);

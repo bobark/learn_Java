@@ -8,6 +8,7 @@ import edu.javacourse.studentorder.domain.StudentOrderStatus;
 import edu.javacourse.studentorder.exception.DaoException;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 
 public class StudentDaoImpl implements StudentOrderDao {
 
@@ -41,11 +42,16 @@ public class StudentDaoImpl implements StudentOrderDao {
 
     @Override
     public Long saveStudentOrder(StudentOrder so) throws DaoException {
+
+        Long result = -1L;
+
         try (Connection con = getConnection();
-             PreparedStatement stmt = con.prepareStatement(INSERT_ORDER)) {
-//h
+             PreparedStatement stmt = con.prepareStatement(INSERT_ORDER, new String[]{"student_order_id"})) {
+//header
             stmt.setInt(1, StudentOrderStatus.START.ordinal());
-            stmt.setTimestamp(2, java.sql.Timestamp.valueOf(so.getStudentOrderDate()));
+            stmt.setTimestamp(2, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+
+//h
             stmt.setString(3, so.getHusband().getSurName());
             stmt.setString(4, so.getHusband().getGivenName());
             stmt.setString(5, so.getHusband().getPatronymic());
@@ -80,10 +86,16 @@ public class StudentDaoImpl implements StudentOrderDao {
             stmt.setLong(30, so.getMarriageOffice().getOfficeId());
             stmt.setDate(31, java.sql.Date.valueOf(so.getMarriageDate()));
 
+            stmt.executeUpdate();
+
+           ResultSet gkRs =  stmt.getGeneratedKeys();
+           if(gkRs.next()){
+               result = gkRs.getLong(1);
+           }gkRs.close();
 
         } catch (SQLException ex) {
             throw new DaoException(ex);
         }
-        return 0L;
+        return  result;
     }
 }
