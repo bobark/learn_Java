@@ -9,7 +9,7 @@ import edu.javacourse.studentorder.exception.DaoException;
 
 import java.sql.*;
 
-public class StudentDaoImpl implements StudentOrderDao{
+public class StudentDaoImpl implements StudentOrderDao {
 
     public static final String INSERT_ORDER =
             "INSERT INTO jc_student_order(" +
@@ -45,7 +45,7 @@ public class StudentDaoImpl implements StudentOrderDao{
              PreparedStatement stmt = con.prepareStatement(INSERT_ORDER)) {
 //h
             stmt.setInt(1, StudentOrderStatus.START.ordinal());
-            stmt.setTimestamp(2,java.sql.Timestamp.valueOf(so.getStudentOrderDate()));
+            stmt.setTimestamp(2, java.sql.Timestamp.valueOf(so.getStudentOrderDate()));
             stmt.setString(3, so.getHusband().getSurName());
             stmt.setString(4, so.getHusband().getGivenName());
             stmt.setString(5, so.getHusband().getPatronymic());
@@ -54,11 +54,11 @@ public class StudentDaoImpl implements StudentOrderDao{
             stmt.setString(8, so.getHusband().getPassportNumber());
             stmt.setDate(9, java.sql.Date.valueOf(so.getHusband().getIssueDate()));
             stmt.setLong(10, so.getHusband().getIssueDepartment().getOfficeId());
-            stmt.setString(11,so.getHusband().getAddress().getPostCode());
-            stmt.setLong(12,so.getHusband().getAddress().getStreet().getStreetCode());
-            stmt.setString(13,so.getHusband().getAddress().getBuilding());
-            stmt.setString(14,so.getHusband().getAddress().getExtension());
-            stmt.setString(15,so.getHusband().getAddress().getApartment());
+            stmt.setString(11, so.getHusband().getAddress().getPostCode());
+            stmt.setLong(12, so.getHusband().getAddress().getStreet().getStreetCode());
+            stmt.setString(13, so.getHusband().getAddress().getBuilding());
+            stmt.setString(14, so.getHusband().getAddress().getExtension());
+            stmt.setString(15, so.getHusband().getAddress().getApartment());
 //w
 
             stmt.setString(16, so.getWife().getSurName());
@@ -69,17 +69,16 @@ public class StudentDaoImpl implements StudentOrderDao{
             stmt.setString(21, so.getWife().getPassportNumber());
             stmt.setDate(22, java.sql.Date.valueOf(so.getWife().getIssueDate()));
             stmt.setLong(23, so.getWife().getIssueDepartment().getOfficeId());
-            stmt.setString(24,so.getWife().getAddress().getPostCode());
-            stmt.setLong(25,so.getWife().getAddress().getStreet().getStreetCode());
-            stmt.setString(26,so.getWife().getAddress().getBuilding());
-            stmt.setString(27,so.getWife().getAddress().getExtension());
-            stmt.setString(28,so.getWife().getAddress().getApartment());
+            stmt.setString(24, so.getWife().getAddress().getPostCode());
+            stmt.setLong(25, so.getWife().getAddress().getStreet().getStreetCode());
+            stmt.setString(26, so.getWife().getAddress().getBuilding());
+            stmt.setString(27, so.getWife().getAddress().getExtension());
+            stmt.setString(28, so.getWife().getAddress().getApartment());
 //certificate
 
-            stmt.setString(29,so.getMarriageCertificateId());
-            stmt.setLong(30,so.getMarriageOffice().getOfficeId());
+            stmt.setString(29, so.getMarriageCertificateId());
+            stmt.setLong(30, so.getMarriageOffice().getOfficeId());
             stmt.setDate(31, java.sql.Date.valueOf(so.getMarriageDate()));
-
 
 
         } catch (SQLException ex) {
