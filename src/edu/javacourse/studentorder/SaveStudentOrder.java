@@ -13,19 +13,37 @@ import java.util.List;
 public class SaveStudentOrder {
     public static void main(String[] args) throws Exception {
 
-        List<Street> d = new DictionaryDaoImp().findStreet("про");
-        for (Street s:d){
-            System.out.println(s.getStreetName());
+//        List<Street> d = new DictionaryDaoImp().findStreet("про");
+//        for (Street s : d) {
+//            System.out.println(s.getStreetName());
+//        }
+//        List<PassportOffice> po = new DictionaryDaoImp().findPassportOffice("010020000000");
+//        for (PassportOffice p : po) {
+//            System.out.println(p.getOfficeName());
+//        }
+//        List<RegisterOffice> ro = new DictionaryDaoImp().findRegisterOffice("010010000000");
+//        for (RegisterOffice r : ro) {
+//            System.out.println(r.getOfficeName());
+//        }
+        List<CountryArea> ca1 = new DictionaryDaoImp().findArea("");
+        for (CountryArea c : ca1) {
+            System.out.println(c.getArea_id() + ":" + c.getArea_iname());
         }
-        List <PassportOffice> po = new DictionaryDaoImp().findPassportOffice("010020000000");
-        for (PassportOffice p: po){
-            System.out.println(p.getOfficeName());
+        System.out.println("---->");
+        List<CountryArea> ca2 = new DictionaryDaoImp().findArea("020000000000");
+        for (CountryArea c : ca2) {
+            System.out.println(c.getArea_id() + ":" + c.getArea_iname());
         }
-        List <RegisterOffice> ro = new DictionaryDaoImp().findRegisterOffice("010010000000");
-        for (RegisterOffice r: ro){
-            System.out.println(r.getOfficeName());
+        System.out.println("---->");
+        List<CountryArea> ca3 = new DictionaryDaoImp().findArea("020010000000");
+        for (CountryArea c : ca3) {
+            System.out.println(c.getArea_id() + ":" + c.getArea_iname());
         }
-
+        System.out.println("---->");
+        List<CountryArea> ca4 = new DictionaryDaoImp().findArea("020010010000");
+        for (CountryArea c : ca4) {
+            System.out.println(c.getArea_id() + ":" + c.getArea_iname());
+        }
 
 
 //         StudentOrder so = new StudentOrder();
@@ -47,7 +65,7 @@ public class SaveStudentOrder {
         StudentOrder so1 = so;
         so.setMarriageCertificateId("" + (123456000 + id));
         so.setMarriageDate(LocalDate.of(2016, 7, 4));
-        RegisterOffice ro = new RegisterOffice(1L, "","");
+        RegisterOffice ro = new RegisterOffice(1L, "", "");
         so.setMarriageOffice(ro);
 
         Street street = new Street(1L, "First street");
@@ -59,7 +77,7 @@ public class SaveStudentOrder {
         husband.setPassportSeria("" + (1000 + id));
         husband.setPassportNumber("" + (100000 + id));
         husband.setIssueDate(LocalDate.of(2017, 9, 15));
-        PassportOffice po1 = new PassportOffice(1L,"","");
+        PassportOffice po1 = new PassportOffice(1L, "", "");
         husband.setIssueDepartment(po1);
         husband.setStudentId("" + (100000 + id));
         husband.setAddress(address);
@@ -68,7 +86,7 @@ public class SaveStudentOrder {
         wife.setPassportSeria("" + (2000 + id));
         wife.setPassportNumber("" + (200000 + id));
         wife.setIssueDate(LocalDate.of(2018, 4, 5));
-        PassportOffice po2 = new PassportOffice(2L,"","");
+        PassportOffice po2 = new PassportOffice(2L, "", "");
         wife.setIssueDepartment(po2);
         wife.setStudentId("" + (200000 + id));
         wife.setAddress(address);
@@ -76,14 +94,14 @@ public class SaveStudentOrder {
         Child child1 = new Child("Петрова", "Ирина", "Викторовна", LocalDate.of(2018, 6, 29));
         child1.setCertificateNumber("" + (300000 + id));
         child1.setIssueDate(LocalDate.of(2018, 7, 19));
-        RegisterOffice ro2 = new RegisterOffice(2L, "","");
+        RegisterOffice ro2 = new RegisterOffice(2L, "", "");
         child1.setIssueDepartment(ro2);
         child1.setAddress(address);
         // Ребенок
         Child child2 = new Child("Петров", "Евгений", "Викторович", LocalDate.of(2018, 6, 29));
         child2.setCertificateNumber("" + (400000 + id));
         child2.setIssueDate(LocalDate.of(2018, 7, 19));
-        RegisterOffice ro3 = new RegisterOffice(3L, "","");
+        RegisterOffice ro3 = new RegisterOffice(3L, "", "");
         child2.setIssueDepartment(ro3);
         child2.setAddress(address);
 
