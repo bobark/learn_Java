@@ -79,8 +79,8 @@ CREATE TABLE jc_student_order
 
 CREATE TABLE jc_student_child
 (
-    student_child SERIAL,
-    student_child_id integer not null,
+    student_child_id SERIAL,
+    student_order_id integer not null,
     c_sur_name varchar (100) not null,
     c_given_name varchar (100) not null,
     c_patronymic varchar (100) not null,
