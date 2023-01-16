@@ -1,16 +1,10 @@
 package edu.javacourse.studentorder;
 
-import edu.javacourse.studentorder.dao.DictionaryDaoImp;
-import edu.javacourse.studentorder.dao.StudentDaoImpl;
+import edu.javacourse.studentorder.dao.StudentOrderDaoImpl;
 import edu.javacourse.studentorder.dao.StudentOrderDao;
 import edu.javacourse.studentorder.domain.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.List;
 
 public class SaveStudentOrder {
     public static void main(String[] args) throws Exception {
@@ -30,7 +24,7 @@ public class SaveStudentOrder {
 //
 
         StudentOrder s = buildStudentOrder(10);
-        StudentOrderDao studentOrderDao = new StudentDaoImpl();
+        StudentOrderDao studentOrderDao = new StudentOrderDaoImpl();
        Long id = studentOrderDao.saveStudentOrder(s);
         System.out.println(id);
 
@@ -88,7 +82,7 @@ public class SaveStudentOrder {
         // Ребенок
         Child child2 = new Child("Петров", "Евгений", "Викторович", LocalDate.of(2018, 6, 29));
         child2.setCertificateNumber("" + (400000 + id));
-        child2.setIssueDate(LocalDate.of(2018, 7, 19));
+        child2.setIssueDate(LocalDate.of(2019, 7, 12));
         RegisterOffice ro3 = new RegisterOffice(3L, "", "");
         child2.setIssueDepartment(ro3);
         child2.setAddress(address);
