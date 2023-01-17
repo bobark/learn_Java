@@ -53,30 +53,38 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
 
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(INSERT_ORDER, new String[]{"student_order_id"})) {
+
+            con.setAutoCommit(false);
+            try {
 //header
-            stmt.setInt(1, StudentOrderStatus.START.ordinal());
-            stmt.setTimestamp(2, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+                stmt.setInt(1, StudentOrderStatus.START.ordinal());
+                stmt.setTimestamp(2, java.sql.Timestamp.valueOf(LocalDateTime.now()));
 
 //HUSBAND & WIFE
 
-            setParamsAdult(stmt, 3, so.getHusband());
-            setParamsAdult(stmt, 16, so.getWife());
+                setParamsAdult(stmt, 3, so.getHusband());
+                setParamsAdult(stmt, 16, so.getWife());
 
 //certificate
 
-            stmt.setString(29, so.getMarriageCertificateId());
-            stmt.setLong(30, so.getMarriageOffice().getOfficeId());
-            stmt.setDate(31, java.sql.Date.valueOf(so.getMarriageDate()));
+                stmt.setString(29, so.getMarriageCertificateId());
+                stmt.setLong(30, so.getMarriageOffice().getOfficeId());
+                stmt.setDate(31, java.sql.Date.valueOf(so.getMarriageDate()));
 
-            stmt.executeUpdate();
+                stmt.executeUpdate();
 
-            ResultSet gkRs = stmt.getGeneratedKeys();
-            if (gkRs.next()) {
-                result = gkRs.getLong(1);
+                ResultSet gkRs = stmt.getGeneratedKeys();
+                if (gkRs.next()) {
+                    result = gkRs.getLong(1);
+                }
+                gkRs.close();
+
+                saveChildren(con, so, result);
+                con.commit();
+            }catch (SQLException ex){
+                con.rollback();
+                throw ex;
             }
-            gkRs.close();
-
-            saveChildren(con, so, result);
 
         } catch (SQLException ex) {
             throw new DaoException(ex);
