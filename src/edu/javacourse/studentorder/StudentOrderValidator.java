@@ -37,7 +37,7 @@ public class StudentOrderValidator {
     }
 
     public void checkAll() {
-        List <StudentOrder> soList = readStudentOrders();
+        List<StudentOrder> soList = readStudentOrders();
 
         for (StudentOrder so : soList) {
 
@@ -46,20 +46,20 @@ public class StudentOrderValidator {
     }
 
     public List<StudentOrder> readStudentOrders() {
-        List <StudentOrder> soList = new LinkedList<>();
+        List<StudentOrder> soList = new LinkedList<>();
         for (int i = 0; i < 5; i++) {
             StudentOrder so = SaveStudentOrder.buildStudentOrder(i);
-            soList.add(so) ;
+            soList.add(so);
         }
         return soList;
     }
 
     public void checkOneOrder(StudentOrder so) {
         AnswerCityRegister cityAnswer = checkCityRegister(so);
-      //  AnswerWedding wedAnswer = checkWadding(so);
-     //   AnswerChildren childAnswer = checkChildren(so);
-     //   AnswerStudent studentAnswer = checkStudent(so);
-      //  sendMail(so);
+        //  AnswerWedding wedAnswer = checkWadding(so);
+        //   AnswerChildren childAnswer = checkChildren(so);
+        //   AnswerStudent studentAnswer = checkStudent(so);
+        //  sendMail(so);
     }
 
 
