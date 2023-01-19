@@ -39,7 +39,9 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                     "VALUES (?, ?, ?, ?, ?, ?," +
                     " ?, ?, ?, ?, ?, ?, ?);";
     public static final String SELECT_ORDERS =
-            "SELECT * FROM jc_student_order WHERE student_order_status = 0 ORDER BY  student_order_date";
+            "SELECT  so.*, ro.r_office_area_id, ro.r_office_name FROM jc_student_order so " +
+                    "INNER JOIN jc_register_office ro ON ro.r_office_id=so.register_office_id " +
+                    "WHERE student_order_status = 0 ORDER BY  student_order_date";
 
     //TODO refactoring - make one method
     private Connection getConnection() throws SQLException {
@@ -162,8 +164,10 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
         so.setMarriageCertificateId(rs.getString("certificate_id"));
         so.setMarriageDate(rs.getDate("marriage_date").toLocalDate());
         Long roId = rs.getLong("register_office_id");
-        RegisterOffice ro = new RegisterOffice(roId, "", "");
-        so.setMarriageCertificateId(String.valueOf(ro));
+        String areaId = rs.getString("r_office_area_id");
+        String name = rs.getString("r_office_name");
+        RegisterOffice ro = new RegisterOffice(roId,areaId,name);
+        so.setMarriageOffice(ro);
     }
 
     private void saveChildren(Connection con, StudentOrder so, Long soId) throws SQLException {
